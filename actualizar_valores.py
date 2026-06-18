@@ -2,16 +2,11 @@ import requests
 import pandas as pd
 import re
 import gspread
-from google.oauth2.service_account import Credentials
-from bs4 import BeautifulSoup
-
-# =========================
-# GOOGLE SHEETS SETUP
-# =========================
-
 import os
 import json
+from bs4 import BeautifulSoup
 from google.oauth2.service_account import Credentials
+
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
@@ -20,18 +15,12 @@ info = json.loads(os.environ["GOOGLE_CREDS"])
 creds = Credentials.from_service_account_info(info, scopes=SCOPES)
 client = gspread.authorize(creds)
 
-
-
-SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 SPREADSHEET_ID = "1QA6bpWTw_uILBwO3-z7GXfA3QOGor_EoX4m-ljdsTe4"
-
-client = gspread.authorize(creds)
 
 sh = client.open_by_key(SPREADSHEET_ID)
 
 ws_fondos = sh.worksheet("Fondos")
 ws_hist = sh.worksheet("HistoricoVL")
-
 
 # =========================
 # FT SCRAPER
