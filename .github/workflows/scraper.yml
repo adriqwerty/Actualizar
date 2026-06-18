@@ -1,19 +1,8 @@
 name: FT Scraper
 
 on:
-  schedule:
-    # 🟢 LUNES A SABADO - 07:00 (España) = 05:00 UTC
-    - cron: "0 5 * * 1-6"
-
-    # 🟢 LUNES A VIERNES cada 2h (09:00 a 21:00 España)
-    - cron: "0 7 * * 1-5"
-    - cron: "0 9 * * 1-5"
-    - cron: "0 12 * * 1-5"
-    - cron: "0 13 * * 1-5"
-    - cron: "0 15 * * 1-5"
-    - cron: "0 17 * * 1-5"
-    - cron: "0 19 * * 1-5"
-  workflow_dispatch:      # ejecución manual
+  workflow_dispatch:
+  push:
 
 jobs:
   run:
