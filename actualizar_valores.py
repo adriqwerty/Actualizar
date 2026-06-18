@@ -9,8 +9,20 @@ from bs4 import BeautifulSoup
 # GOOGLE SHEETS SETUP
 # =========================
 
+import os
+import json
+from google.oauth2.service_account import Credentials
+
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-CREDS_FILE = "credentials.json"
+
+info = json.loads(os.environ["GOOGLE_CREDS"])
+
+creds = Credentials.from_service_account_info(info, scopes=SCOPES)
+client = gspread.authorize(creds)
+
+
+
+SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 SPREADSHEET_ID = "1QA6bpWTw_uILBwO3-z7GXfA3QOGor_EoX4m-ljdsTe4"
 
 creds = Credentials.from_service_account_file(CREDS_FILE, scopes=SCOPES)
