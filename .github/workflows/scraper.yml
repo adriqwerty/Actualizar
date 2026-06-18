@@ -1,8 +1,9 @@
 name: FT Scraper
 
 on:
+  schedule:
+    - cron: "*/10 * * * *"
   workflow_dispatch:
-  push:
 
 jobs:
   run:
