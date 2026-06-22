@@ -23,12 +23,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Wake up Streamlit
-        run: |
-          curl -L -s https://inversiona.streamlit.app/ > /dev/null
-
       - name: Run script
         env:
           GOOGLE_CREDS: ${{ secrets.GOOGLE_CREDS }}
         run: |
           python actualizar_valores.py
+      
+      - name: Wake up Streamlit
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" \
+            -L --max-redirs 5 \
+            --connect-timeout 10 \
+            --max-time 30 \
+            -A "Mozilla/5.0" \
+            https://inversiona.streamlit.app/
