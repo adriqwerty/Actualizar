@@ -29,11 +29,11 @@ jobs:
         run: |
           python actualizar_valores.py
       
-      - name: Wake up Streamlit
+      - name: Ping Streamlit
+        continue-on-error: true
         run: |
-          curl -s -o /dev/null -w "%{http_code}" \
-            -L --max-redirs 5 \
+          curl -s \
             --connect-timeout 10 \
             --max-time 30 \
             -A "Mozilla/5.0" \
-            https://inversiona.streamlit.app/
+            https://inversiona.streamlit.app/ > /dev/null || true
