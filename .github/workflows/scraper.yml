@@ -32,8 +32,4 @@ jobs:
       - name: Ping Streamlit
         continue-on-error: true
         run: |
-          curl -s \
-            --connect-timeout 10 \
-            --max-time 30 \
-            -A "Mozilla/5.0" \
-            https://inversiona.streamlit.app/ > /dev/null || true
+          wget -q -O /dev/null https://inversiona.streamlit.app/ || true
